@@ -42,3 +42,26 @@ declare function print(user: User) {}
 ```
 
 We have documented the default arguments in our types!!
+
+### What if I use default destructured args the normal way?
+
+Try making a file like this and running `tsc -d`:
+
+```ts
+function sayMany({ times = 10, word }: { times?: number; word: string }) {
+    console.log(word.repeat(times))
+}
+```
+
+You'll get a declaration like this, and it will be very difficult for the users of your package to determine what happens when they don't specify `times`:
+
+```ts
+declare function sayMany({ times, word }: {
+    times?: number;
+    word: string;
+}): void;
+```
+
+```sh
+npm i default-interface
+```
