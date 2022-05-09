@@ -14,7 +14,7 @@ import DefaultInterface from 'default-interface'
 
 const defaults = {
     topFruit: 'orange',
-    birthday: new Date('1980-01-01'),
+    isPro: false,
 } as const
 
 type User = DefaultInterface<{
@@ -23,25 +23,42 @@ type User = DefaultInterface<{
 }, typeof defaults>
 
 export function print(user: User) {
-    const { topFruit, birthday, id, token } = { ...defaults, ...user }
-    return `A user named ${id} (${token}) was born on ${birthday} loving ${topFruit}s`
+    const { topFruit, isPro, id, token } = { ...defaults, ...user }
+    const proText = isPro ? 'a pro' : 'not a pro'
+    return `A user named ${id} (${token}) loves ${topFruit}s and is ${proText}`
+}
+/** If you need the required version of an interface then it's one line */
+export function makeUser(partial: User): Required<User> {
+    return { ...defaults, ...partial }
 }
 ```
 
 If you run `tsc --declaration` then `printUser.d.ts` will have:
 
 ```ts
-type User = DefaultInterface<{
-    topFruit: 'orange'
-    birthday: new Date('1980-01-01')
-}, {
-    id: number
-    token: string
-}>
-declare function print(user: User) {}
+declare const defaults: {
+    readonly topFruit: "orange";
+    readonly isPro: false;
+};
+declare type User = DefaultInterface<{
+    id: number;
+    token: string;
+}, typeof defaults>;
+declare function print(user: User): string;
+declare function makeUser(partial: User): Required<User>;
 ```
 
 We have documented the default arguments in our types!!
+
+### Checklist
+
+- ✅ booleans
+- ✅ numbers
+- ✅ strings
+- ✅ array literals and arrays
+- ✅ object literals and records
+
+Unfortunately that's all that typescript lets you put in declaration files. So defaults that are BigInts or class instances won't show up, but you rarely use those as parameters anyway.
 
 ### What if I use default destructured args the normal way?
 
