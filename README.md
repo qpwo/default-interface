@@ -1,29 +1,29 @@
 # default-interface
 
-Typescript interfaces with default values. Document default parameters in your `.d.ts` declaration file.
+Typescript interfaces with default values. Document default parameters in your `.d.ts` declaration file. Tell your library users what those optional args really default to!
 
 ```sh
 npm i default-interface
 ```
 
+### Example usage
+
 ```ts
+// printUser.ts
 import DefaultInterface from 'default-interface'
 
-const _defaults = {
+const defaults = {
     topFruit: 'orange',
     birthday: new Date('1980-01-01'),
 } as const
 
-type User = DefaultInterface<
-    {
-        id: number
-        token: string
-    },
-    typeof _defaults
->
+type User = DefaultInterface<{
+    id: number
+    token: string
+}, typeof defaults>
 
 export function print(user: User) {
-    const { topFruit, birthday, id, token } = { ..._defaults, ...user }
+    const { topFruit, birthday, id, token } = { ...defaults, ...user }
     return `A user named ${id} (${token}) was born on ${birthday} loving ${topFruit}s`
 }
 ```
