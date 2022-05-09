@@ -1,6 +1,6 @@
 {
   "name": "default-interface",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Typescript interfaces with default values. Document default parameters in your `.d.ts` declaration file.",
   "types": "dist/index.d.ts",
   "scripts": {

@@ -2,10 +2,10 @@
     "name": "example-library",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
-    "dependencies": {
-        "default-interface": "link:.."
-    },
     "scripts": {
         "build": "tsc -d index.ts --outDir dist"
+    },
+    "dependencies": {
+        "default-interface": "*"
     }
 }
