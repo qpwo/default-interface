@@ -14,11 +14,13 @@ const _defaults = {
     birthday: new Date('1980-01-01'),
 } as const
 
-// prettier-ignore
-type User = DefaultInterface<_defaults, {
-    id: number
-    token: string
-}>
+type User = DefaultInterface<
+    {
+        id: number
+        token: string
+    },
+    typeof _defaults
+>
 
 export function print(user: User) {
     const { topFruit, birthday, id, token } = { ..._defaults, ...user }

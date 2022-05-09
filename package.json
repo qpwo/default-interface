@@ -1,0 +1,28 @@
+{
+  "name": "default-interface",
+  "version": "1.0.0",
+  "description": "Typescript interfaces with default values. Document default parameters in your `.d.ts` declaration file.",
+  "types": "dist/index.d.ts",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -d index.ts --emitDeclarationOnly --outDir dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qpwo/default-interface.git"
+  },
+  "keywords": [
+    "typescript",
+    "interface",
+    "default"
+  ],
+  "author": "Luke Harold Miles",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qpwo/default-interface/issues"
+  },
+  "homepage": "https://github.com/qpwo/default-interface#readme",
+  "devDependencies": {
+    "typescript": "^4.6.4"
+  }
+}
